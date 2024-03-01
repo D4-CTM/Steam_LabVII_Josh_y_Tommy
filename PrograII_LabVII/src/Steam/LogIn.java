@@ -5,6 +5,8 @@
 package Steam;
 
 import java.awt.Color;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -165,7 +167,15 @@ public class LogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_CancelActionPerformed
 
     private void LogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInActionPerformed
-        
+        try {
+            if (Exe.Jugadores.getUsername(Username.getText()).equals(Username.getText())){
+                if (Exe.Jugadores.getPassword(Username.getText()).equals(Password.getText())){
+                    new Menu(Username.getText()).setVisible(true);
+                    return ;
+                } else System.out.println("Pass");
+            } else System.out.println("Username");
+            JOptionPane.showMessageDialog(this, "No se ha encontrado el usuario!");
+        }catch (IOException Ex){}
     }//GEN-LAST:event_LogInActionPerformed
 
     private void RegisterAccountMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegisterAccountMouseEntered

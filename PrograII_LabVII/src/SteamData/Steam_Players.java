@@ -19,8 +19,18 @@ public class Steam_Players {
         Writer = new RandomAccessFile("Steam\\Players.stm", "rw");
     }
     
-    private int getCode() throws IOException{
-        return counter.getCode("user");
+    private void initPlayers() throws IOException{
+        Writer.seek(0);
+        if (Writer.length() == 0){
+            Writer.writeInt(0);
+            Writer.writeUTF("Admin");
+            Writer.writeUTF("Supersecreto");
+            Writer.writeUTF("Erick");
+            Writer.writeLong(0);
+            Writer.writeInt(0);
+            Writer.writeUTF("Icons\\PlayersPFP\\The_Bat.png");
+            Writer.writeUTF("Admin");
+        }
     }
     /*
     * Formato de jugadores:
@@ -35,8 +45,7 @@ public class Steam_Players {
     */
     public void addPlayer(String Username, String Password, String Name, Date BirthDate, String ImageUrl, String AccountType) throws IOException{
         Writer.seek(Writer.length());
-        int Code = getCode();
-        Writer.writeInt(Code);
+        Writer.writeInt(Math.round(Writer.length()));
         Writer.writeUTF(Username);
         Writer.writeUTF(Password);
         Writer.writeUTF(Name);
@@ -51,7 +60,7 @@ public class Steam_Players {
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
             long Pos = Writer.getFilePointer();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -70,7 +79,7 @@ public class Steam_Players {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -109,7 +118,7 @@ public class Steam_Players {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -130,7 +139,7 @@ public class Steam_Players {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -153,7 +162,7 @@ public class Steam_Players {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -176,7 +185,7 @@ public class Steam_Players {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
