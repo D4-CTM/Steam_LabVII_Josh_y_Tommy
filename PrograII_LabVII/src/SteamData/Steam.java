@@ -38,7 +38,7 @@ public class Steam {
     public void downloadGame(int code, int userCode, char OS) throws IOException{
         if(!games.getTitulo(code).equals("") && games.getSO(code)==OS){
             if(games.getESRB(code)>= players.getEdad(players.buscar(userCode, 0))){
-                RandomAccessFile downloadFile = new RandomAccessFile("Steam/downloads/download_codedownload.stm", "rw");
+                RandomAccessFile downloadFile = new RandomAccessFile("Steam/downloads/download_" + codes.getNextFree("downs") + "download.stm", "rw");
                 downloadFile.writeInt(codes.getCode("downs"));
                 Calendar hoy = Calendar.getInstance();
                 downloadFile.writeUTF("Fecha de descarga: " + hoy.toString());
