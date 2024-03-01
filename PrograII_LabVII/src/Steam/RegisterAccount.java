@@ -131,6 +131,8 @@ public class RegisterAccount extends javax.swing.JFrame {
             }
         });
 
+        DAte.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

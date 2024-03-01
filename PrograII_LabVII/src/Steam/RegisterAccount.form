@@ -229,6 +229,11 @@
       </Events>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="DAte">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI" size="14" style="0"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
