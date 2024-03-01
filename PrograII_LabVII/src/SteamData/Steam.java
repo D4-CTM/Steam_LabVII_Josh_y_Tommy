@@ -6,6 +6,7 @@ package SteamData;
 
 import java.io.*;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -46,4 +47,22 @@ public class Steam {
             }
         }
     }
+    
+    public void updatePriceFor(int code, double precio) throws IOException{
+        games.updatePriceFor(code, precio);
+    }
+    
+    public void reportForClient(String username) throws IOException{
+        RandomAccessFile reporte = new RandomAccessFile("steam/reporte_" + username + ".txt", "rw");
+        Calendar birthdate = Calendar.getInstance();
+        birthdate.setTime(new Date(players.getBirthDate(username)));
+        reporte.writeUTF("Nombre: " + players.getName(username) + 
+                "\nNickname: " + players.getUsername(username) + 
+                "\nBirthdate: " + birthdate.toString() + 
+                "\nTipo: " + players.TypeAccount(username));
+    }
+    
+    public void printGames() throws IOException{
+        System.out.println(games.printGames(0));
+    } 
 }
