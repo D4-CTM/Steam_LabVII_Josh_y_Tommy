@@ -17,6 +17,7 @@ public class Steam_Players {
         if (!CarpetaDeJugadores.exists()) CarpetaDeJugadores.mkdir();
         
         Writer = new RandomAccessFile("Steam\\Players.stm", "rw");
+        initPlayers();
     }
     
     private void initPlayers() throws IOException{
@@ -87,7 +88,6 @@ public class Steam_Players {
                 Writer.readUTF();
                 Writer.readUTF();
             } else {
-                Writer.readUTF();
                 return Writer.readUTF();
             }
         }
