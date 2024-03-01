@@ -32,10 +32,10 @@ public class LogIn extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        Username = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        LogInTXT = new javax.swing.JLabel();
+        User = new javax.swing.JTextField();
+        UsernameTXT = new javax.swing.JLabel();
+        PassTXT = new javax.swing.JLabel();
         Password = new javax.swing.JPasswordField();
         jButton1 = new javax.swing.JButton();
         LogIn = new javax.swing.JButton();
@@ -44,17 +44,17 @@ public class LogIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Log in");
+        LogInTXT.setFont(new java.awt.Font("Rockwell Extra Bold", 0, 48)); // NOI18N
+        LogInTXT.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        LogInTXT.setText("Log in");
 
-        Username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        User.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Username:");
+        UsernameTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        UsernameTXT.setText("Username:");
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Password:");
+        PassTXT.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        PassTXT.setText("Password:");
 
         Password.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -105,10 +105,10 @@ public class LogIn extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(Cancel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Username)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(User)
+                        .addComponent(LogInTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+                        .addComponent(PassTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(UsernameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(Password, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -120,13 +120,13 @@ public class LogIn extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(LogInTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(UsernameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Username, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(User, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(PassTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,9 +168,10 @@ public class LogIn extends javax.swing.JFrame {
 
     private void LogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LogInActionPerformed
         try {
-            if (Exe.Jugadores.getUsername(Username.getText()).equals(Username.getText())){
-                if (Exe.Jugadores.getPassword(Username.getText()).equals(Password.getText())){
-                    new Menu(Username.getText()).setVisible(true);
+            if (Exe.Jugadores.getUsername(User.getText()).equals(User.getText())){
+                if (Exe.Jugadores.getPassword(User.getText()).equals(Password.getText())){
+                    dispose();
+                    new Menu(User.getText()).setVisible(true);
                     return ;
                 } else System.out.println("Pass");
             } else System.out.println("Username");
@@ -194,13 +195,13 @@ public class LogIn extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancel;
     private javax.swing.JButton LogIn;
+    private javax.swing.JLabel LogInTXT;
+    private javax.swing.JLabel PassTXT;
     private javax.swing.JPasswordField Password;
     private javax.swing.JLabel RegisterAccount;
-    private javax.swing.JTextField Username;
+    private javax.swing.JTextField User;
+    private javax.swing.JLabel UsernameTXT;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
