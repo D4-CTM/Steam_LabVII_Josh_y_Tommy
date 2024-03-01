@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package steam_labp2;
+package SteamData;
 
 import java.io.*;
 
@@ -13,7 +13,7 @@ import java.io.*;
 public class Steam_Codes {
     private RandomAccessFile rcodes;
     public Steam_Codes(){
-        File padre = new File("steam");
+        File padre = new File("Steam");
         try{
             if(!padre.exists()){
                 padre.mkdir();
@@ -45,6 +45,12 @@ public class Steam_Codes {
     //Funciones publicas
     
     public int getCode(String type) throws IOException{
+        int code = getNextFree(type);
+        rcodes.writeInt(code+1);
+        return code;
+    }
+    
+    public int getNextFree(String type) throws IOException{
         int index=0;
         switch(type){
             case "game" -> {
@@ -58,10 +64,9 @@ public class Steam_Codes {
             }
         }
         rcodes.seek(index);
-        int code = rcodes.readInt();
+        int count = rcodes.readInt();
         rcodes.seek(index);
-        rcodes.writeInt(code+1);
-        return code;
+        return count;
     }
     
 }

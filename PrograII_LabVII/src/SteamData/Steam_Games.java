@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package steam_labp2;
+package SteamData;
 
 import javax.swing.ImageIcon;
 import java.io.*;
@@ -16,7 +16,8 @@ public class Steam_Games {
     private RandomAccessFile rgames;
     
     public Steam_Games(){
-        File padre = new File("steam");
+        File padre = new File("Steam");
+        counter=new Steam_Codes();
         try{
             if(!padre.exists()){
                 padre.mkdir();
@@ -115,28 +116,47 @@ public class Steam_Games {
     
     //getters
     public String getTitulo(int code) throws IOException{
-        rgames.seek(getByteIndex("titulo", code, 0));
-        return rgames.readUTF();
+        if(getByteIndex("titulo", code, 0)!=rgames.length()){
+            rgames.seek(getByteIndex("titulo", code, 0));
+            return rgames.readUTF();
+        }
+        return "";
     }
     public char getSO(int code) throws IOException{
-        rgames.seek(getByteIndex("so", code, 0));
-        return rgames.readChar();
+        if(getByteIndex("so", code, 0)!=rgames.length()){
+            rgames.seek(getByteIndex("so", code, 0));
+            return rgames.readChar();
+        }
+        return ' ';
     }
     public int getESRB(int code) throws IOException{
-        rgames.seek(getByteIndex("esrb", code, 0));
-        return rgames.readInt();
+        if(getByteIndex("esrb", code, 0)!=rgames.length()){
+            rgames.seek(getByteIndex("esrb", code, 0));
+            return rgames.readInt();
+        }
+        return -1;
     }
     public double getPrecio(int code) throws IOException{
-        rgames.seek(getByteIndex("precio", code, 0));
-        return rgames.readDouble();
+        if(getByteIndex("precio", code, 0)!=rgames.length()){
+            rgames.seek(getByteIndex("precio", code, 0));
+            return rgames.readDouble();
+        }
+        return -1;
+            
     }
     public int getDescargas(int code) throws IOException{
-        rgames.seek(getByteIndex("downs", code, 0));
-        return rgames.readInt();
+        if(getByteIndex("downs", code, 0)!=rgames.length()){
+            rgames.seek(getByteIndex("downs", code, 0));
+            return rgames.readInt();
+        }
+        return -1;
     }
     public ImageIcon getPoster(int code) throws IOException{
-        rgames.seek(getByteIndex("poster_path", code, 0));
-        return new ImageIcon(rgames.readUTF());
+        if(getByteIndex("poster_path", code, 0)!=rgames.length()){
+            rgames.seek(getByteIndex("poster_path", code, 0));
+            return new ImageIcon(rgames.readUTF());
+        }
+        return null;
     }
     
     public void addDownload(int code) throws IOException{
