@@ -165,4 +165,11 @@ public class Steam_Games {
         rgames.seek(getByteIndex("downs", code, 0));
         rgames.writeInt(downs+1);
     }
+    
+    public void updatePriceFor(int code, double price) throws IOException{
+        if(getPrecio(code)>0){
+            rgames.seek(getByteIndex("precio", code, 0));
+            rgames.writeDouble(price);
+        }
+    }
 }
