@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class Player {
     RandomAccessFile Writer;
@@ -20,18 +21,19 @@ public class Player {
     
     private void initCodes() throws IOException {
         if(Writer.length() == 0){
-            Writer.writeInt(1);
+            Writer.writeInt(0);
+            Writer.writeUTF("Admin");
+            Writer.writeUTF("Supersecreto");
+            Writer.writeUTF("Erick");
+            Writer.writeLong(0);
+            Writer.writeInt(0);
+            File Image = new File("Icons\\PlayersPFP\\The_Bat.png");
+            Writer.writeUTF(Image.getAbsolutePath());
+            Writer.writeUTF("Admin");
         }
         Writer.seek(0);
     }
     
-    private int getCode() throws IOException{
-        Writer.seek(0);
-        int Code = Writer.readInt();
-        Writer.seek(0);
-        Writer.writeInt(Code+1);
-        return Code;
-    }
     /*
     * Formato de jugadores:
     * int code
@@ -45,8 +47,7 @@ public class Player {
     */
     public void addPlayer(String Username, String Password, String Name, Date BirthDate, String ImageUrl, String AccountType) throws IOException{
         Writer.seek(Writer.length());
-        int Code = getCode();
-        Writer.writeInt(Code);
+        Writer.writeInt(Math.round(Writer.length()));
         Writer.writeUTF(Username);
         Writer.writeUTF(Password);
         Writer.writeUTF(Name);
@@ -54,6 +55,7 @@ public class Player {
         Writer.writeInt(0);
         Writer.writeUTF(ImageUrl);
         Writer.writeUTF(AccountType);
+        JOptionPane.showMessageDialog(null, "Se ha agregado el usuario exitosamente!");
     }
     
     public String getUsername(String Username) throws IOException{
@@ -61,7 +63,7 @@ public class Player {
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
             long Pos = Writer.getFilePointer();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -80,7 +82,7 @@ public class Player {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -99,7 +101,7 @@ public class Player {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -119,7 +121,7 @@ public class Player {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -140,7 +142,7 @@ public class Player {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -163,7 +165,7 @@ public class Player {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
@@ -186,7 +188,7 @@ public class Player {
         Writer.seek(0);
         while (Writer.getFilePointer() < Writer.length()){
             Writer.readInt();
-            if (Writer.readUTF().equals(Username)){
+            if (!Writer.readUTF().equals(Username)){
                 Writer.readUTF();
                 Writer.readUTF();
                 Writer.readLong();
